@@ -3,8 +3,17 @@
     <head>
         <title>Start Page</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<script type="text/javascript" src="javascript/jquery-2.0.3.min.js"></script>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1 id="title">Hello World!</h1>
+		<div id="content">
+			Bonjour!
+		</div>
+		<script>
+			$('#title').click(function(){
+				$('#content').slideToggle();
+			});
+		</script>
     </body>
 </html>
