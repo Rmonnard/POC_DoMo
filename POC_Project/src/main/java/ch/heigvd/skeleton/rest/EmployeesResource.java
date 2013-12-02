@@ -68,7 +68,7 @@ public class EmployeesResource {
   @Produces({"application/json", "application/xml"})
 	public List<PublicEmployeeTO> getResourceList() {
 		List<Employee> employees = employeesManager.findAll();
-		List<PublicEmployeeTO> result = new LinkedList<PublicEmployeeTO>();
+		List<PublicEmployeeTO> result = new LinkedList<>();
 		for(Employee employee : employees) {
 			result.add(employeesTOService.buildPublicEmployeeTO(employee));
 		}
