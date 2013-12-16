@@ -15,7 +15,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  * 
  * @author Olivier Liechti
  */
-@XmlRootElement
 public class PublicEmployeeTO {
 	
 	private  long employeeId;
