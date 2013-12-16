@@ -68,7 +68,7 @@ public class PersonsServletAfterburner extends HttpServlet {
         List<Employee> employees = employeesManager.findAll();
         try (PrintWriter out = response.getWriter()) {
             //String s = jc.toJSonAfterburner(employees);
-            byte[] s = jc.toJSonAfterburner(employees);
+            String s = jc.toJSonAfterburner(employees);
             out.println(s);
         }
 

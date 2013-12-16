@@ -47,19 +47,17 @@ public class JacksonConverter {
 
     com.fasterxml.jackson.databind.ObjectWriter afterBurnerWriter;
 
-    public byte[] toJSonAfterburner(Object object) {
+    public String toJSonAfterburner(Object object) {
         //  com.fasterxml.jackson.databind.ObjectMapper mapper = new com.fasterxml.jackson.databind.ObjectMapper();
         afterBurnerMapper.registerModule(new AfterburnerModule());
         afterBurnerWriter = afterBurnerMapper.writer();
         // ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         String json;
         try {
-            //json = afterBurnerWriter.writeValueAsString(object);
-            //json = 
-               return     afterBurnerWriter.writeValueAsBytes(json);
+            json = afterBurnerWriter.writeValueAsString(object);
         } catch (IOException ex) {
-            return null;//json = "An error has occured. Look at your code.";
+            json = "An error has occured. Look at your code.";
         }
-        //return null;
+        return json;
     }
 }
