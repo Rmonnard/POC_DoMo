@@ -66,7 +66,7 @@ public class PersonsServletAfterburner extends HttpServlet {
         response.setContentType("application/json;charset=UTF-8");
         List<Employee> employees = employeesManager.findAll();
         try (PrintWriter out = response.getWriter()) {
-            String s = new JacksonConverter().toJSon(employees);
+            String s = new JacksonConverter().toJSonAfterburner(employees);
             out.println(s);
         }
 
@@ -87,7 +87,7 @@ public class PersonsServletAfterburner extends HttpServlet {
         Employee newEmployee = new Employee();
         String s = getBody(request);
         JacksonConverter jc = new JacksonConverter();
-        Employee pe = (Employee) jc.fromJson(s);
+        Employee pe = (Employee) jc.fromJsonAfterburner(s);
         //employeesTOService.updateEmployeeEntity(newEmployee, pe);
         long newEmployeeId = employeesManager.create(pe);
         response.setStatus(HttpServletResponse.SC_ACCEPTED);
