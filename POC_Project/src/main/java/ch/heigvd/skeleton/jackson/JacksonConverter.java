@@ -36,24 +36,30 @@ public class JacksonConverter {
         return json;
     }
 
+    com.fasterxml.jackson.databind.ObjectMapper afterBurnerMapper = new com.fasterxml.jackson.databind.ObjectMapper();
+
     public Object fromJsonAfterburner(String json) throws JsonParseException, JsonMappingException, IOException {
-        com.fasterxml.jackson.databind.ObjectMapper mapper = new com.fasterxml.jackson.databind.ObjectMapper();
-        mapper.registerModule(new AfterburnerModule());
-        Employee empl = mapper.readValue(json, Employee.class);
+        //com.fasterxml.jackson.databind.ObjectMapper mapper = new com.fasterxml.jackson.databind.ObjectMapper();
+        afterBurnerMapper.registerModule(new AfterburnerModule());
+        Employee empl = afterBurnerMapper.readValue(json, Employee.class);
         return empl;
     }
 
-    public String toJSonAfterburner(Object object) {
-        com.fasterxml.jackson.databind.ObjectMapper mapper = new com.fasterxml.jackson.databind.ObjectMapper();
-        mapper.registerModule(new AfterburnerModule());
-        com.fasterxml.jackson.databind.ObjectWriter ow = mapper.writer();
+    com.fasterxml.jackson.databind.ObjectWriter afterBurnerWriter;
+
+    public byte[] toJSonAfterburner(Object object) {
+        //  com.fasterxml.jackson.databind.ObjectMapper mapper = new com.fasterxml.jackson.databind.ObjectMapper();
+        afterBurnerMapper.registerModule(new AfterburnerModule());
+        afterBurnerWriter = afterBurnerMapper.writer();
         // ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         String json;
         try {
-            json = ow.writeValueAsString(object);
+            //json = afterBurnerWriter.writeValueAsString(object);
+            //json = 
+               return     afterBurnerWriter.writeValueAsBytes(json);
         } catch (IOException ex) {
-            json = "An error has occured. Look at your code.";
+            return null;//json = "An error has occured. Look at your code.";
         }
-        return json;
+        //return null;
     }
 }
