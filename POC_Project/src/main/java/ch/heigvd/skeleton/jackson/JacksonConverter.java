@@ -6,10 +6,8 @@
 
 package ch.heigvd.skeleton.jackson;
 
-import ch.heigvd.skeleton.to.PublicEmployeeTO;
+import ch.heigvd.skeleton.model.Employee;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
@@ -23,7 +21,7 @@ public class JacksonConverter {
     
     public Object fromJson(String json) throws JsonParseException
                                                    , JsonMappingException, IOException{
-                PublicEmployeeTO empl = new ObjectMapper().readValue(json, PublicEmployeeTO.class);
+                Employee empl = new ObjectMapper().readValue(json, Employee.class);
                 return empl;
     }
     
@@ -33,7 +31,7 @@ public class JacksonConverter {
         try {
             json = ow.writeValueAsString(object);
         } catch (IOException ex) {
-            json = "NON";
+            json = "An error has occured. Look at your code.";
         }
         return json;
     }

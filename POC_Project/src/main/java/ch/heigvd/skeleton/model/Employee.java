@@ -34,20 +34,17 @@ public class Employee implements Serializable {
 	private String firstName;
 	private String lastName;
 	private String email;
-	private double salary;
 
 	public Employee() {
 		firstName = "UNDEF";
 		lastName = "UNDEF";
 		email = "UNDEF";
-		salary = -1;
 	}
 
 	public Employee(Employee employeeData) {
 		this.firstName = employeeData.firstName;
 		this.lastName = employeeData.lastName;
 		this.email = employeeData.email;
-		this.salary = employeeData.salary;
 	}
 
 	public Long getId() {
@@ -80,14 +77,6 @@ public class Employee implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public double getSalary() {
-		return salary;
-	}
-
-	public void setSalary(double salary) {
-		this.salary = salary;
 	}
 
 	@Override

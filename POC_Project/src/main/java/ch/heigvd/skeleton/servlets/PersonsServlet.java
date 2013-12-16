@@ -8,8 +8,6 @@ package ch.heigvd.skeleton.servlets;
 import ch.heigvd.skeleton.jackson.JacksonConverter;
 import ch.heigvd.skeleton.model.Employee;
 import ch.heigvd.skeleton.services.crud.EmployeesManagerLocal;
-import ch.heigvd.skeleton.services.to.EmployeesTOServiceLocal;
-import ch.heigvd.skeleton.to.PublicEmployeeTO;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -36,9 +34,6 @@ public class PersonsServlet extends HttpServlet {
     @EJB
     EmployeesManagerLocal employeesManager;
 
-    @EJB
-    EmployeesTOServiceLocal employeesTOService;
-
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -52,9 +47,7 @@ public class PersonsServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("application/json;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            PublicEmployeeTO pm = new PublicEmployeeTO(10, "Bob", "Silvestre", "bob.s@bigcorp.com");
-            String json = new JacksonConverter().toJSon(pm);
-            out.println(json);
+            out.println("This cannot append");
         }
     }
 
@@ -75,11 +68,6 @@ public class PersonsServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             String s = new JacksonConverter().toJSon(employees);
             out.println(s);
-            /*for (Employee employee : employees) {
-                PublicEmployeeTO pe = employeesTOService.buildPublicEmployeeTO(employee);
-                String s = new JacksonConverter().toJSon(pe);
-                out.println(s);
-            }*/
         }
 
         //processRequest(request, response);
@@ -99,9 +87,9 @@ public class PersonsServlet extends HttpServlet {
         Employee newEmployee = new Employee();
         String s = getBody(request);
         JacksonConverter jc = new JacksonConverter();
-        PublicEmployeeTO pe = (PublicEmployeeTO) jc.fromJson(s);
-        employeesTOService.updateEmployeeEntity(newEmployee, pe);
-        long newEmployeeId = employeesManager.create(newEmployee);
+        Employee pe = (Employee) jc.fromJson(s);
+        //employeesTOService.updateEmployeeEntity(newEmployee, pe);
+        long newEmployeeId = employeesManager.create(pe);
         response.setStatus(HttpServletResponse.SC_ACCEPTED);
     }
 
