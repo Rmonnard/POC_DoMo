@@ -33,6 +33,7 @@ public class PersonsServletAfterburner extends HttpServlet {
 
     @EJB
     EmployeesManagerLocal employeesManager;
+    @EJB
     JacksonConverter jc;
 
     /**

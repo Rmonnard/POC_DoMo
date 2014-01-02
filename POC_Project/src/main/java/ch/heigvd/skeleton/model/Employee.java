@@ -10,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 
 /**
  * This class is an example for a simple JPA entity. Notice that there is a
@@ -50,6 +51,7 @@ public class Employee implements Serializable {
         this.firstName = employeeData.firstName;
         this.lastName = employeeData.lastName;
         this.email = employeeData.email;
+        this.adr = employeeData.adr;
     }
 
     public Long getId() {

@@ -8,15 +8,16 @@ package ch.heigvd.skeleton.jackson;
 import ch.heigvd.skeleton.model.Employee;
 import com.fasterxml.jackson.module.afterburner.AfterburnerModule;
 import java.io.IOException;
+import javax.ejb.Stateless;
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.map.ObjectWriter;
 
 /**
  *
  * @author luis
  */
+@Stateless
 public class JacksonConverterUsingNew {
 
     public Object fromJson(String json) throws JsonParseException, JsonMappingException, IOException {
