@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <servlet>
+        <servlet-name>PersonServletNewEJB</servlet-name>
+        <servlet-class>ch.heigvd.skeleton.servlets.PersonServletNewEJB</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PersonServletNew</servlet-name>
+        <servlet-class>ch.heigvd.skeleton.servlets.PersonServletNew</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PersonServletEJB</servlet-name>
+        <servlet-class>ch.heigvd.skeleton.servlets.PersonServletEJB</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PersonServletUsingWriter</servlet-name>
+        <servlet-class>ch.heigvd.skeleton.servlets.PersonServletUsingWriter</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PersonServletNewEJB</servlet-name>
+        <url-pattern>/PersonServletNewEJB</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PersonServletNew</servlet-name>
+        <url-pattern>/PersonServletNew</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PersonServletEJB</servlet-name>
+        <url-pattern>/PersonServletEJB</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PersonServletUsingWriter</servlet-name>
+        <url-pattern>/PersonServletUsingWriter</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+</web-app>

@@ -12,31 +12,25 @@ import javax.ejb.Stateless;
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.map.ObjectWriter;
 
 /**
  *
  * @author luis
  */
 @Stateless
-public class JacksonConverter {
-    
-    private ObjectMapper mp;
-    
-    public JacksonConverter(){
-        mp = new ObjectMapper();
-    }
-    
-    public Object fromJson(String json) throws JsonParseException
-                                                   , JsonMappingException, IOException{
-                Employee empl = mp.readValue(json, Employee.class);
-                return empl;
+public class JacksonConverterUsingNew {
+
+    public Object fromJson(String json) throws JsonParseException, JsonMappingException, IOException {
+        ObjectMapper mp = new ObjectMapper();
+        Employee empl = mp.readValue(json, Employee.class);
+        return empl;
     }
 
     public String toJSon(Object object) {
         String json;
         try {
-            json = mp.writeValueAsString(object);
+            ObjectMapper ow = new ObjectMapper();
+            json = ow.writeValueAsString(object);
         } catch (IOException ex) {
             json = "An error has occured. Look at your code.";
         }

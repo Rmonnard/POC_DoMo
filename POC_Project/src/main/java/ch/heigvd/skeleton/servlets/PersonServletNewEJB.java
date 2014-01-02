@@ -3,11 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package ch.heigvd.skeleton.servlets;
 
 import ch.heigvd.skeleton.jackson.JacksonConverter;
+import ch.heigvd.skeleton.jackson.JacksonConverterUsingNew;
 import ch.heigvd.skeleton.model.Employee;
 import ch.heigvd.skeleton.services.crud.EmployeesManagerLocal;
+import static ch.heigvd.skeleton.servlets.PersonsServlet.getBody;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,7 +19,6 @@ import java.io.PrintWriter;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,14 +27,13 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author luis
  */
-@WebServlet(name = "PersonsServlet", urlPatterns = {"/PersonsServlet"})
-public class PersonsServlet extends HttpServlet {
-
+public class PersonServletNewEJB extends HttpServlet {
+    
     @EJB
     EmployeesManagerLocal employeesManager;
     
     @EJB
-    JacksonConverter jc;
+    JacksonConverterUsingNew jc;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -69,8 +70,6 @@ public class PersonsServlet extends HttpServlet {
             String s = jc.toJSon(employees);
             out.println(s);
         }
-
-        //processRequest(request, response);
     }
 
     /**
@@ -100,7 +99,8 @@ public class PersonsServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
+    
+    
     public static String getBody(HttpServletRequest request) throws IOException {
 
         String body = null;
@@ -134,4 +134,5 @@ public class PersonsServlet extends HttpServlet {
         body = stringBuilder.toString();
         return body;
     }
+
 }

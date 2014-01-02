@@ -23,6 +23,7 @@ public class EmployeesManager implements EmployeesManagerLocal {
 	public long create(Employee employeeData) {
 		Employee newEmployee = new Employee(employeeData);
 		em.persist(newEmployee);
+                //em.persist(newEmployee.getAdr());
 		return newEmployee.getId();
 	}
 

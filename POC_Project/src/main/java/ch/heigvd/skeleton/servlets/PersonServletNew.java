@@ -3,11 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package ch.heigvd.skeleton.servlets;
 
-import ch.heigvd.skeleton.jackson.JacksonConverter;
+import ch.heigvd.skeleton.jackson.JacksonConverterUsingNew;
 import ch.heigvd.skeleton.model.Employee;
 import ch.heigvd.skeleton.services.crud.EmployeesManagerLocal;
+import static ch.heigvd.skeleton.servlets.PersonServletNewEJB.getBody;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,7 +18,6 @@ import java.io.PrintWriter;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,15 +26,11 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author luis
  */
-@WebServlet(name = "PersonsServlet", urlPatterns = {"/PersonsServlet"})
-public class PersonsServlet extends HttpServlet {
+public class PersonServletNew extends HttpServlet {
 
     @EJB
     EmployeesManagerLocal employeesManager;
     
-    @EJB
-    JacksonConverter jc;
-
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -65,12 +62,11 @@ public class PersonsServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("application/json;charset=UTF-8");
         List<Employee> employees = employeesManager.findAll();
+        JacksonConverterUsingNew jc = new JacksonConverterUsingNew();
         try (PrintWriter out = response.getWriter()) {
             String s = jc.toJSon(employees);
             out.println(s);
         }
-
-        //processRequest(request, response);
     }
 
     /**
@@ -85,6 +81,7 @@ public class PersonsServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String s = getBody(request);
+        JacksonConverterUsingNew jc = new JacksonConverterUsingNew();
         Employee pe = (Employee) jc.fromJson(s);
         employeesManager.create(pe);
         //employeesTOService.updateEmployeeEntity(newEmployee, pe);

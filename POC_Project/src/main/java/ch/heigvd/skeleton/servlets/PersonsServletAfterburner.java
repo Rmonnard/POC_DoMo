@@ -13,6 +13,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.URI;
+import java.util.LinkedList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -20,17 +22,17 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.core.Response;
 
 /**
  *
  * @author luis
  */
-@WebServlet(name = "PersonsServlet", urlPatterns = {"/PersonsServlet"})
-public class PersonsServlet extends HttpServlet {
+@WebServlet(name = "PersonsServletAfterburner", urlPatterns = {"/PersonsServletAfterburner"})
+public class PersonsServletAfterburner extends HttpServlet {
 
     @EJB
     EmployeesManagerLocal employeesManager;
-    
     @EJB
     JacksonConverter jc;
 
@@ -66,7 +68,8 @@ public class PersonsServlet extends HttpServlet {
         response.setContentType("application/json;charset=UTF-8");
         List<Employee> employees = employeesManager.findAll();
         try (PrintWriter out = response.getWriter()) {
-            String s = jc.toJSon(employees);
+            //String s = jc.toJSonAfterburner(employees);
+            String s = jc.toJSonAfterburner(employees);
             out.println(s);
         }
 
@@ -85,7 +88,8 @@ public class PersonsServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String s = getBody(request);
-        Employee pe = (Employee) jc.fromJson(s);
+      //  JacksonConverter jc = new JacksonConverter();
+        Employee pe = (Employee) jc.fromJsonAfterburner(s);
         employeesManager.create(pe);
         //employeesTOService.updateEmployeeEntity(newEmployee, pe);
         response.setStatus(HttpServletResponse.SC_ACCEPTED);
