@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package ch.heigvd.skeleton.servlets;
 
 import ch.heigvd.skeleton.jackson.JacksonConverter;
@@ -13,26 +14,23 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.net.URI;
-import java.util.LinkedList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.ws.rs.core.Response;
 
 /**
  *
  * @author luis
  */
-@WebServlet(name = "PersonsServletAfterburner", urlPatterns = {"/PersonsServletAfterburner"})
-public class PersonsServletAfterburner extends HttpServlet {
-
+public class PersonServletEJB extends HttpServlet {
+    
     @EJB
     EmployeesManagerLocal employeesManager;
+    
+    @EJB
     JacksonConverter jc;
 
     /**
@@ -67,12 +65,9 @@ public class PersonsServletAfterburner extends HttpServlet {
         response.setContentType("application/json;charset=UTF-8");
         List<Employee> employees = employeesManager.findAll();
         try (PrintWriter out = response.getWriter()) {
-            //String s = jc.toJSonAfterburner(employees);
-            String s = jc.toJSonAfterburner(employees);
+            String s = jc.toJSon(employees);
             out.println(s);
         }
-
-        //processRequest(request, response);
     }
 
     /**
@@ -88,8 +83,7 @@ public class PersonsServletAfterburner extends HttpServlet {
             throws ServletException, IOException {
         Employee newEmployee = new Employee();
         String s = getBody(request);
-      //  JacksonConverter jc = new JacksonConverter();
-        Employee pe = (Employee) jc.fromJsonAfterburner(s);
+        Employee pe = (Employee) jc.fromJson(s);
         //employeesTOService.updateEmployeeEntity(newEmployee, pe);
         long newEmployeeId = employeesManager.create(pe);
         response.setStatus(HttpServletResponse.SC_ACCEPTED);
@@ -104,7 +98,8 @@ public class PersonsServletAfterburner extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
+    
+    
     public static String getBody(HttpServletRequest request) throws IOException {
 
         String body = null;
@@ -138,4 +133,5 @@ public class PersonsServletAfterburner extends HttpServlet {
         body = stringBuilder.toString();
         return body;
     }
+
 }

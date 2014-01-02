@@ -8,6 +8,14 @@
         <servlet-name>PersonServletNew</servlet-name>
         <servlet-class>ch.heigvd.skeleton.servlets.PersonServletNew</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PersonServletEJB</servlet-name>
+        <servlet-class>ch.heigvd.skeleton.servlets.PersonServletEJB</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PersonServletUsingWriter</servlet-name>
+        <servlet-class>ch.heigvd.skeleton.servlets.PersonServletUsingWriter</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>PersonServletNewEJB</servlet-name>
         <url-pattern>/PersonServletNewEJB</url-pattern>
@@ -15,6 +23,14 @@
     <servlet-mapping>
         <servlet-name>PersonServletNew</servlet-name>
         <url-pattern>/PersonServletNew</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PersonServletEJB</servlet-name>
+        <url-pattern>/PersonServletEJB</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PersonServletUsingWriter</servlet-name>
+        <url-pattern>/PersonServletUsingWriter</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

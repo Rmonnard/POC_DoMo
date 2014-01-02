@@ -28,7 +28,7 @@ public class JacksonConverterUsingNew {
     public String toJSon(Object object) {
         String json;
         try {
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+            ObjectMapper ow = new ObjectMapper();
             json = ow.writeValueAsString(object);
         } catch (IOException ex) {
             json = "An error has occured. Look at your code.";

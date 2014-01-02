@@ -21,12 +21,10 @@ import org.codehaus.jackson.map.ObjectWriter;
 @Stateless
 public class JacksonConverter {
     
-    private ObjectWriter ow;
     private ObjectMapper mp;
     
     public JacksonConverter(){
         mp = new ObjectMapper();
-        ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
     }
     
     public Object fromJson(String json) throws JsonParseException
@@ -38,7 +36,7 @@ public class JacksonConverter {
     public String toJSon(Object object) {
         String json;
         try {
-            json = ow.writeValueAsString(object);
+            json = mp.writeValueAsString(object);
         } catch (IOException ex) {
             json = "An error has occured. Look at your code.";
         }
