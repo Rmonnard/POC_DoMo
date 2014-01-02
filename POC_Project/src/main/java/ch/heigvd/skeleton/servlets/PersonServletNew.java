@@ -80,12 +80,11 @@ public class PersonServletNew extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Employee newEmployee = new Employee();
         String s = getBody(request);
         JacksonConverterUsingNew jc = new JacksonConverterUsingNew();
         Employee pe = (Employee) jc.fromJson(s);
+        employeesManager.create(pe);
         //employeesTOService.updateEmployeeEntity(newEmployee, pe);
-        long newEmployeeId = employeesManager.create(pe);
         response.setStatus(HttpServletResponse.SC_ACCEPTED);
     }
 

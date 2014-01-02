@@ -11,6 +11,7 @@ import java.io.IOException;
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.map.ObjectReader;
 import org.codehaus.jackson.map.ObjectWriter;
 
 /**
@@ -21,15 +22,18 @@ public class JacksonConverterObjectWriter {
     
     private ObjectWriter ow;
     private ObjectMapper mp;
+    private ObjectReader or;
     
     public JacksonConverterObjectWriter(){
         mp = new ObjectMapper();
+        or = mp.reader(Employee.class);
         ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
     }
     
     public Object fromJson(String json) throws JsonParseException
                                                    , JsonMappingException, IOException{
-                Employee empl = mp.readValue(json, Employee.class);
+                //Employee empl = mp.readValue(json, Employee.class);
+                Employee empl = or.readValue(json);
                 return empl;
     }
 
