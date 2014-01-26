@@ -35,7 +35,7 @@ INSTALLATION:
 Clone the git on your computer.
 Install Netbeans and Glassfish.
 Download Apache JMeter.
-Download Apache JMeter addon and copy the .jar file into /.../.../ in the JMeter folder.
+Download Apache JMeter addon and copy the .jar file into apache-jmeter-x.xx/lib/ext/ in the JMeter folder.
 
 COMPUTE:
 --------
