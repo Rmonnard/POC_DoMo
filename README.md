@@ -46,6 +46,6 @@ You can play with all of the servlet, read the code, modify, pr try to optimize.
 TEAM:
 -----
 
-Luis Domingues
-Matteo Tagliabue
-Romain Monnard
+* Luis Domingues
+* Matteo Tagliabue
+* Romain Monnard
