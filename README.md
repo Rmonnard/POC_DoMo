@@ -42,3 +42,10 @@ COMPUTE:
 
 You can now run the glassfish server and launch the JMeter mesurements.
 You can play with all of the servlet, read the code, modify, pr try to optimize. You can create your own servlets too.
+
+TEAM:
+-----
+
+Luis Domingues
+Matteo Tagliabue
+Romain Monnard
