@@ -1,8 +1,10 @@
 
 
 Technical Proof-of-Concept project
+==================================
 
 How can we optimize the serialisation in REST APIs with Jackson.
+----------------------------------------------------------------
 
 We have build a simple REST API in java ee with glassfish as server. This REST API has a list of users as resource. This ressource is stored in a MYSQL database. There is 2 tables, one for the firstname, lastname , email, ... and an other table for the postal address of the user. The two table are joined by a one to one rule.
 
@@ -28,6 +30,7 @@ Object of Jackson optimized for parsing JSON. Faster than ObjectMapper
 
 
 INSTALLATION:
+-------------
 
 Clone the git on your computer.
 Install Netbeans and Glassfish.
@@ -35,6 +38,7 @@ Download Apache JMeter.
 Download Apache JMeter addon and copy the .jar file into /.../.../ in the JMeter folder.
 
 COMPUTE:
+--------
 
 You can now run the glassfish server and launch the JMeter mesurements.
 You can play with all of the servlet, read the code, modify, pr try to optimize. You can create your own servlets too.
